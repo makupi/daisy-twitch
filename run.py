@@ -22,15 +22,15 @@ class Bot(commands.Bot):
 
     @commands.command(name="join")
     async def join(self, ctx):
-        await self.join_channels([ctx.channel.name])
-        config.channels.append(ctx.channel.name)
-        await ctx.send(f"Joined {ctx.channel.name}.")
+        await self.join_channels([ctx.author.name])
+        config.channels.append(ctx.author.name)
+        await ctx.send(f"Joined {ctx.author.name}.")
 
     @commands.command(name="leave")
     async def leave(self, ctx):
-        await self.part_channels([ctx.channel.name])
-        config.channels.remove(ctx.channel.name)
-        await ctx.send(f"Left {ctx.channel.name}.")
+        await self.part_channels([ctx.author.name])
+        config.channels.remove(ctx.author.name)
+        await ctx.send(f"Left {ctx.author.name}.")
 
 
 bot = Bot()

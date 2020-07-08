@@ -25,17 +25,18 @@ class Bot(commands.Bot):
         await self.join_channels([ctx.author.name])
         config.channels.append(ctx.author.name)
         await ctx.send(f"Joined {ctx.author.name}.")
+        config.save_channels()
 
     @commands.command(name="leave")
     async def leave(self, ctx):
         await self.part_channels([ctx.author.name])
         config.channels.remove(ctx.author.name)
         await ctx.send(f"Left {ctx.author.name}.")
+        config.save_channels()
 
 
 bot = Bot()
 bot.add_cog(nookipedia.Nookipedia(bot))
 bot.run()
 
-with open("channels.json", "w") as channels_file:
-    json.dump({"channels": list(dict.fromkeys(config.channels))}, channels_file)
+

@@ -58,45 +58,45 @@ class Nookipedia:
                       f'| Rarity: {c.rarity} | Value: {split_string_categories(c.price)}'
             await ctx.send(message)
 
-    @commands.command()
-    async def personalities(self, ctx):
-        """*Get a list of personalities*
-
-        **Example**: `{prefix}personalities` """
-        embed = await create_embed(title="Personalities")
-        desc = ""
-        for k in self.personality_data.keys():
-            desc += f" - {k}\n"
-        embed.description = desc
-        await ctx.send(embed=embed)
-
-    @commands.command()
-    async def personality(self, ctx, name: str):
-        """*Get all villagers with a certain personality*
-
-        **Usage**: `{prefix}personality <name>`
-        **Example**: `{prefix}personality jock` """
-        name = name.capitalize()
-        embed = await create_embed()
-        if name not in self.personality_data:
-            embed.description = f"Personality `{name}` not found."
-            await ctx.send(embed=embed)
-            return
-        embed.title = f"{name} villagers"
-        data = self.personality_data.get(name)
-        counter = 0
-        msg = "```"
-        for name in data:
-            msg += f"{name:^10}\t"
-            counter += 1
-            if counter == 4:
-                msg += "\n"
-                counter = 0
-        msg += "```"
-
-        embed.description = msg
-        embed.set_footer(text="Powered by https://nookipedia.com/")
-        await ctx.send(embed=embed)
+    # @commands.command()
+    # async def personalities(self, ctx):
+    #     """*Get a list of personalities*
+    #
+    #     **Example**: `{prefix}personalities` """
+    #     embed = await create_embed(title="Personalities")
+    #     desc = ""
+    #     for k in self.personality_data.keys():
+    #         desc += f" - {k}\n"
+    #     embed.description = desc
+    #     await ctx.send(embed=embed)
+    #
+    # @commands.command()
+    # async def personality(self, ctx, name: str):
+    #     """*Get all villagers with a certain personality*
+    #
+    #     **Usage**: `{prefix}personality <name>`
+    #     **Example**: `{prefix}personality jock` """
+    #     name = name.capitalize()
+    #     embed = await create_embed()
+    #     if name not in self.personality_data:
+    #         embed.description = f"Personality `{name}` not found."
+    #         await ctx.send(embed=embed)
+    #         return
+    #     embed.title = f"{name} villagers"
+    #     data = self.personality_data.get(name)
+    #     counter = 0
+    #     msg = "```"
+    #     for name in data:
+    #         msg += f"{name:^10}\t"
+    #         counter += 1
+    #         if counter == 4:
+    #             msg += "\n"
+    #             counter = 0
+    #     msg += "```"
+    #
+    #     embed.description = msg
+    #     embed.set_footer(text="Powered by https://nookipedia.com/")
+    #     await ctx.send(embed=embed)
 
 
 def setup(bot):

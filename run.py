@@ -24,13 +24,13 @@ class Bot(commands.Bot):
     async def join(self, ctx):
         await self.join_channels([ctx.channel.name])
         config.channels.append(ctx.channel.name)
-        await ctx.send(f";join")
+        await ctx.send(f"Joined {ctx.channel.name}.")
 
     @commands.command(name="leave")
     async def leave(self, ctx):
         await self.part_channels([ctx.channel.name])
         config.channels.remove(ctx.channel.name)
-        await ctx.send(f";leave")
+        await ctx.send(f"Left {ctx.channel.name}.")
 
 
 bot = Bot()

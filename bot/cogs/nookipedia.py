@@ -18,7 +18,7 @@ def split_string_categories(string):
 class Nookipedia:
     def __init__(self, bot):
         self.bot = bot
-        self.api = NookipediaAPI(api_key=nookipedia_key, cached_api=True)
+        self.api = NookipediaAPI(api_key=nookipedia_key)
         # self.villagers = list()
         # self.critters = list()
         # self.personality_data = dict()
@@ -44,18 +44,32 @@ class Nookipedia:
                       f'| Birthday: {v.birthday} | Personality: {v.personality}'
             await ctx.send(message)
 
-    @commands.command(aliases=["bug", "fish"])
-    async def critter(self, ctx, *, name: str):
-        """*Look up a critter by name*
+    @commands.command()
+    async def fish(self, ctx, *, name: str):
+        """*Look up a fish by name*
 
-        **Usage**: `{prefix}critter <name>`
-        **Example**: `{prefix}critter sea bass` """
-        c = await self.api.get_critter(name)
+        **Usage**: `{prefix}fish <name>`
+        **Example**: `{prefix}fish sea bass` """
+        c = await self.api.get_fish(name)
         if not c:
-            await ctx.send(f'Critter "{name}" not found.')
+            await ctx.send(f'Fish "{name}" not found.')
         else:
-            message = f'Critter "{c.name}" Location: {c.location} ' \
-                      f'| Rarity: {c.rarity} | Value: {split_string_categories(c.price)}'
+            message = f'Fish "{c.name}" Location: {c.location} ' \
+                      f'| Rarity: {c.rarity} | Sell Nook: {c.sell_nook} | Sell CJ: {c.sell_cj}'
+            await ctx.send(message)
+
+    @commands.command()
+    async def bug(self, ctx, *, name: str):
+        """*Look up a bug by name*
+
+        **Usage**: `{prefix}bug <name>`
+        **Example**: `{prefix}bug sea bass` """
+        c = await self.api.get_bug(name)
+        if not c:
+            await ctx.send(f'Bug "{name}" not found.')
+        else:
+            message = f'Fish "{c.name}" Location: {c.location} ' \
+                      f'| Rarity: {c.rarity} | Sell Nook: {c.sell_nook} | Sell Flick: {c.sell_flick}'
             await ctx.send(message)
 
     # @commands.command()

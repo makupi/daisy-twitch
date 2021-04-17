@@ -14,7 +14,6 @@ def split_string_categories(string):
     string.replace(")", "), ")
 
 
-
 class Nookipedia:
     def __init__(self, bot):
         self.bot = bot
@@ -35,13 +34,15 @@ class Nookipedia:
         """*Look up a villager by name*
 
         **Usage**: `{prefix}villager <name>`
-        **Example**: `{prefix}villager marshal` """
+        **Example**: `{prefix}villager marshal`"""
         v = await self.api.get_villager(name)
         if not v:
             await ctx.send(f'Villager "{name}" not found.')
         else:
-            message = f'Villager "{v.name}" | Species: {v.species} ' \
-                      f'| Birthday: {v.birthday} | Personality: {v.personality}'
+            message = (
+                f'Villager "{v.name}" | Species: {v.species} '
+                f"| Birthday: {v.birthday} | Personality: {v.personality}"
+            )
             await ctx.send(message)
 
     @commands.command()
@@ -49,13 +50,15 @@ class Nookipedia:
         """*Look up a fish by name*
 
         **Usage**: `{prefix}fish <name>`
-        **Example**: `{prefix}fish sea bass` """
+        **Example**: `{prefix}fish sea bass`"""
         c = await self.api.get_fish(name)
         if not c:
             await ctx.send(f'Fish "{name}" not found.')
         else:
-            message = f'Fish "{c.name}" Location: {c.location} ' \
-                      f'| Rarity: {c.rarity} | Sell Nook: {c.sell_nook} | Sell CJ: {c.sell_cj}'
+            message = (
+                f'Fish "{c.name}" | Location: {c.location} '
+                f"| Rarity: {c.rarity} | Sell Nook: {c.sell_nook} | Sell CJ: {c.sell_cj}"
+            )
             await ctx.send(message)
 
     @commands.command()
@@ -63,13 +66,15 @@ class Nookipedia:
         """*Look up a bug by name*
 
         **Usage**: `{prefix}bug <name>`
-        **Example**: `{prefix}bug sea bass` """
+        **Example**: `{prefix}bug sea bass`"""
         c = await self.api.get_bug(name)
         if not c:
             await ctx.send(f'Bug "{name}" not found.')
         else:
-            message = f'Fish "{c.name}" Location: {c.location} ' \
-                      f'| Rarity: {c.rarity} | Sell Nook: {c.sell_nook} | Sell Flick: {c.sell_flick}'
+            message = (
+                f'Bug "{c.name}" | Location: {c.location} '
+                f"| Rarity: {c.rarity} | Sell Nook: {c.sell_nook} | Sell Flick: {c.sell_flick}"
+            )
             await ctx.send(message)
 
     # @commands.command()

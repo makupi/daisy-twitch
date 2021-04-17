@@ -14,6 +14,7 @@ nick = twitch_config.get("nick", "")
 prefix = twitch_config.get("prefix", ";")
 nookipedia_key = twitch_config.get("nookipedia", "")
 
+
 def save_channels():
     with open("channels.json", "w") as channels_file:
-        json.dump({"channels": list(dict.fromkeys(channels))}, channels_file)
+        json.dump({"channels": set(dict.fromkeys(channels))}, channels_file)
